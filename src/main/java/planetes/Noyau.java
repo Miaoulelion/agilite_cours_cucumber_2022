@@ -2,23 +2,31 @@ package planetes;
 
 
 /**
- * Décrivez votre classe Noyau ici.
- *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * Les planètes suffisamment chaudes possèdent un noyau.
+ * Il s'agit d'un brûlant au centre de ces planètes.
+ * @author (Nicolas, Anis)
  */
 public class Noyau
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private Planete planete;
+    
     /**
      * Constructeur d'objets de classe Noyau
      */
+    
     public Noyau(Planete planete)
     {
     	this.setPlanete(planete);
         planete.setNoyau(this);
     }
+    
+    /**
+     * Un noyau est lié à une planète, mais seulement à une seule planète.
+     * Ce setter n'est utilisé que lors de la construction de la planète.
+     * Seuls les Dieux ayant le pouvoir de manipuler les méthodes privées
+     * peuvent déplacer un noyau d'une planète à une autre !
+     * @param planete
+     */
     
     private void setPlanete(Planete planete){
         if(planete==null){
@@ -29,10 +37,12 @@ public class Noyau
     }
 
     /**
-     * Le noyau n'est pas visible. Son diamètre est approximé en fonction du diamètre de la planète
+     * Le noyau n'est pas visible au commun des mortels. 
+     * Son diamètre est approximé en fonction du diamètre de la planète
      * et de sa tempréature.
      * @return le diamètre approximé du noyau.
      */
+    
     public int getDiametreApproximatif()
     {
         // Insérez votre code ici

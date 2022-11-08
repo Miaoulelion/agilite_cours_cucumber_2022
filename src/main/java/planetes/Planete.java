@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 /**
  * La classe planète décrit une planète et ses comportements
+ * Une planète peut avoir un noyau et un ou plusieurs satellites
  * (Promis pas d'astéroïde)
- * @author Nicolas B. Anis H.
- * @version (un numéro de version ou une date)
+ * @author (Nicolas, Anis)
  */
 public class Planete {
     // Variables d'instance représentant les principales caractéristiques 
@@ -38,15 +38,11 @@ public class Planete {
         
     }
     
-    public Planete(int diametre, int temp, Noyau noyau){
-        if(noyau==null){
-            throw new IllegalArgumentException("Il n'y a pas de noyau, noyau == null");
-        }
-        this.diametre=diametre;
-        this.temperatureMoyenne=temp;
-        this.noyau=noyau;
-        this.satellites = new LinkedList<>();
-    }
+    /**
+     * Une planète suffisamment jeune et dynamique peut posséder un noyau.
+     * Cette méthode permet d'ajouter un noyau à une planète.
+     * @param noyau
+     */
     
     public void setNoyau(Noyau noyau){
         if(noyau==null){
@@ -90,14 +86,15 @@ public class Planete {
     }
     
     /**
-     * Getter du noyau de la planète
+     * Getter du noyau de la planète.
      */
     public Noyau getNoyau(){
         return this.noyau;
     }
     
     /**
-     * 
+     * Les scientifique avaient besoin d'une méthode de calcul simple et efficace pour connaître
+     * le diamètre et la température moyenne d'une planète d'un seul coup !
      * @return Un tableau de deux éléments, le premier étant le diamètre de la planète et le second la température moyenne.
      */
     
@@ -117,9 +114,21 @@ public class Planete {
     	this.satellites.add(satelite);
     }
     
+    /**
+     * On a parfois besoin de savoir qui accompagne une planète !
+     * @return une copie de la liste de satellites (avec les vraies satellites dedans !)
+     */
+    
 	public LinkedList<Satellite> getSatellite() {
 		return new LinkedList<Satellite>(this.satellites);
 	}
+	
+	/**
+	 * Une planète peut décider de continuer son chemin seule.
+	 * Un satellite peut se perdre dans le reste de l'univers...
+	 * Attention car un satellite quant à lui n'oublie jamais sa planète, jusqu'à ce qu'elle soit remplacée.
+	 * @param satellite
+	 */
 	
 	public void supprimerSatellite(Satellite satellite) {
 		this.satellites.remove(satellite);

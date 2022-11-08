@@ -1,5 +1,12 @@
 package planetes;
 
+/**
+ * La classe des satellites qui gravitent autour des planètes
+ * Un satellite ne tourne qu'autour d'une planète.
+ * Lorsqu'il ne gravite plus autour de sa planète, pour divers accidents de la nature (divorce, astéroïde...)
+ *  il ne l'oublie pas pour autant ! (Promis toujours pas d'astéroïde)
+ * @author (Nicolas, Anis)
+ */
 public class Satellite {
 	private Planete planete;
 	private String nom;
@@ -9,6 +16,12 @@ public class Satellite {
 		this.nom = nom;
 	}
 
+	/**
+	 * Permet d'indiquer autour de quelle planète le Satellite tourne actuellement
+	 * Ou bien la dernière planète autour de laquelle il a tourné !
+	 * @param planete
+	 */
+	
 	public void setPlanete(Planete planete) {
 		if(planete == null) {
 			throw new IllegalArgumentException("Une satelite ne peut avoir une planete == null");
@@ -21,10 +34,20 @@ public class Satellite {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return La planète autour de laquelle notre petit satellite gravite.
+	 */
+	
 	public Planete getPlanete() {
 		return this.planete;
 	}
 
+	/**
+	 * Notre satellite a un joli nom qui lui a été donné à sa création.
+	 * @return nom du satellite.
+	 */
+	
 	public String getNom() {
 		return nom;
 	}
