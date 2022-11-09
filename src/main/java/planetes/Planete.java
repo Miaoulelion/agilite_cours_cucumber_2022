@@ -21,9 +21,8 @@ public class Planete {
      */
     public Planete(int diametre, int temp)
     {
-        // initialisation des variables d'instance
-        this.diametre = diametre;
-        this.temperatureMoyenne = temp;
+    	this.setTemperatureMoyenne(temp);
+    	this.setDiametre(diametre);
         this.satellites = new LinkedList<>();
     }
     
@@ -32,10 +31,9 @@ public class Planete {
      * plutôt chaud...
      */
     public Planete(){
-        this.diametre=100;
-        this.temperatureMoyenne=100;
+    	this.setDiametre(100);
+    	this.setTemperatureMoyenne(100);
         this.satellites = new LinkedList<>();
-        
     }
     
     /**
@@ -74,6 +72,9 @@ public class Planete {
      * Méthode permettant de modifier la température de la planète
      */
     public void setTemperatureMoyenne(int temperature){
+    	if(temperature < 0) {
+    		throw new IllegalArgumentException("La temperature est en kelvin et ne peut être inférieure à 0");
+    	}
         this.temperatureMoyenne=temperature;
     }
     
@@ -82,6 +83,9 @@ public class Planete {
      * Méthode permettant de modifier le diamètre de la planète
      */
     public void setDiametre(int diam){
+    	if(diam < 0) {
+    		throw new IllegalArgumentException("Un diametre ne peut être inférieur à 0");
+    	}
         this.diametre=diam;
     }
     
@@ -107,11 +111,12 @@ public class Planete {
      * @param une Planete
      */
     
-    public void ajouterSatellites(Satellite satelite) {
-    	if(satelite == null) {
+    public void ajouterSatellite(Satellite satellite) {
+    	if(satellite == null) {
     		throw new IllegalArgumentException("Ajout de planète == null non valide");
     	}
-    	this.satellites.add(satelite);
+    	this.satellites.add(satellite);
+    	satellite.setPlanete(this);
     }
     
     /**
@@ -119,7 +124,7 @@ public class Planete {
      * @return une copie de la liste de satellites (avec les vraies satellites dedans !)
      */
     
-	public LinkedList<Satellite> getSatellite() {
+	public LinkedList<Satellite> getSatellites() {
 		return new LinkedList<Satellite>(this.satellites);
 	}
 	
@@ -131,9 +136,11 @@ public class Planete {
 	 */
 	
 	public void supprimerSatellite(Satellite satellite) {
-		this.satellites.remove(satellite);
+		if(this.satellites.contains(satellite)) {
+			this.satellites.remove(satellite);
+		}
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

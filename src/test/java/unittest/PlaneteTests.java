@@ -17,18 +17,6 @@ public class PlaneteTests {
 	private Noyau noyauDeLaTerre;
     private Satellite lune;
 
-    // Définissez ici les variables d'instance nécessaires à vos engagements;
-    // Vous pouvez également les saisir automatiquement du présentoir
-    // à l'aide du menu contextuel "Présentoir --> Engagements".
-    // Notez cependant que ce dernier ne peut saisir les objets primitifs
-    // du présentoir (les objets sans constructeur, comme int, float, etc.).
-    
-
-    /**
-     * Met en place les engagements.
-     *
-     * Méthode appelée avant chaque appel de méthode de test.
-     */
     @Before
     public void setUp() {
         this.planeteTerre = new Planete();
@@ -48,35 +36,25 @@ public class PlaneteTests {
     
     @Test
     public void diametreApproximatifNoyauTest(){
-    	int diamApproximatif = 0;
-    	//Dans le cas d'une planète "standard" : 
-        if(this.planeteTerre.getDiametre() == 50 && this.planeteTerre.getTemperatureMoyenne() == 25){
-        	
-        	diamApproximatif = (int)50*(25/5000);
-        
-        	assertEquals(diamApproximatif, this.planeteTerre.getNoyau().getDiametreApproximatif());
-        } else { //Dans le cas d'une planète "personnalisée" :
-        	
-        	int diametrePlanete = this.planeteTerre.getDiametreEtTemperatureMoyenne()[0];
-        	int temperaturePlanete = this.planeteTerre.getDiametreEtTemperatureMoyenne()[1];
-        	diamApproximatif = temperaturePlanete * (diametrePlanete / 5000);
-        	
-            assertEquals(diamApproximatif, this.planeteTerre.getNoyau().getDiametreApproximatif());
-        }
+    	int diamApproximatif = 0; 
+        int diametrePlanete = this.planeteTerre.getDiametreEtTemperatureMoyenne()[0];
+        int temperaturePlanete = this.planeteTerre.getDiametreEtTemperatureMoyenne()[1];
+        //Nous vérifions que le calcul des scientifiques est bien effectué.
+        diamApproximatif = (temperaturePlanete / 2) + (diametrePlanete / 2);
+        assertEquals(diamApproximatif, this.planeteTerre.getNoyau().getDiametreApproximatif());
     }
     
-    
     @Test
-    public void satellitesDesPlanetesTest() {
+    public void listeDesSatellitesEnOrbiteTest() {
     	//On retourne les satellites de la terre
-    	LinkedList<Satellite> listeDesSatellites = this.planeteTerre.getSatellite();
+    	LinkedList<Satellite> listeDesSatellites = this.planeteTerre.getSatellites();
     	listeDesSatellites.remove();
     	assertTrue(listeDesSatellites.size() == 0);
     	
     	//On vérifie que la suppression d'un satellite de la LinkedList ne supprime pas
     	//réellement le satellite, des satellites de la terre. Il ne faut pas donner de si
     	//grands pouvoirs entre toutes les mains !
-    	LinkedList<Satellite> listeDesSatellitesNonModifiees = this.planeteTerre.getSatellite();
+    	LinkedList<Satellite> listeDesSatellitesNonModifiees = this.planeteTerre.getSatellites();
     	assertTrue(listeDesSatellitesNonModifiees.size() == 1);
     	Satellite uniqueSatelliteDeLaTerre = listeDesSatellitesNonModifiees.get(0);
     	assertEquals(this.lune, uniqueSatelliteDeLaTerre);
@@ -86,15 +64,9 @@ public class PlaneteTests {
     	//Pour supprimer un satellite, il faut passer par la méthode supprimerSatellite()
     	//On vérifie que tout est bien encapsulé comme on l'a souhaité.
     	this.planeteTerre.supprimerSatellite(uniqueSatelliteDeLaTerre);
-    	assertTrue(this.planeteTerre.getSatellite().size() == 0);
+    	assertTrue(this.planeteTerre.getSatellites().size() == 0);
     }
     
-
-    /**
-     * Supprime les engagements
-     *
-     * Méthode appelée après chaque appel de méthode de test.
-     */
     @After
     public void tearDown()
     {

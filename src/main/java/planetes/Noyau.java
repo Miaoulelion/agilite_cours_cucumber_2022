@@ -33,20 +33,25 @@ public class Noyau
             throw new IllegalArgumentException("Il n'y a pas de planète, planète == null");
         }
         this.planete=planete;
-        planete.setNoyau(this);
+    }
+    
+    public int getTruc() {
+    	return this.planete.getDiametre();
     }
 
     /**
      * Le noyau n'est pas visible au commun des mortels. 
      * Son diamètre est approximé en fonction du diamètre de la planète
-     * et de sa tempréature.
+     * et de sa tempréature. Attention, ces résultats peuvent être incohérents,
+     * l'état actuel de la science n'est pas forcément très avancé...
      * @return le diamètre approximé du noyau.
      */
     
     public int getDiametreApproximatif()
     {
-        // Insérez votre code ici
-        return (int)this.planete.getDiametreEtTemperatureMoyenne()[0]*(this.planete.getDiametreEtTemperatureMoyenne()[1]/5000);
+    	int diametrePlanete = this.planete.getDiametreEtTemperatureMoyenne()[0];
+    	int temperaturePlanete = this.planete.getDiametreEtTemperatureMoyenne()[1];
+        return (temperaturePlanete / 2) + (diametrePlanete / 2);
     }
 
 	@Override

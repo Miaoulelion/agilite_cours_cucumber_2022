@@ -11,6 +11,10 @@ public class Satellite {
 	private Planete planete;
 	private String nom;
 	
+	public Satellite(String nom) {
+		this.nom = nom;
+	}
+	
 	public Satellite(Planete planete, String nom) {
 		this.setPlanete(planete);
 		this.nom = nom;
@@ -29,8 +33,8 @@ public class Satellite {
 		this.planete = planete;
 		//Il se peut que ce satellite appartienne déjà à une planète, il ne faudrait pas qu'il 
 		//appartienne deux fois à cette planète.
-		if(!planete.getSatellite().contains(this)) {
-			planete.ajouterSatellites(this);
+		if(!planete.getSatellites().contains(this)) {
+			planete.ajouterSatellite(this);
 		}
 	}
 	
