@@ -1,4 +1,4 @@
-package unitest;
+package unittest;
 
 import static org.junit.Assert.*;
 import java.util.LinkedList;
@@ -53,7 +53,7 @@ public class PlaneteTests {
         if(this.planeteTerre.getDiametre() == 50 && this.planeteTerre.getTemperatureMoyenne() == 25){
         	
         	diamApproximatif = (int)50*(25/5000);
-            
+        
         	assertEquals(diamApproximatif, this.planeteTerre.getNoyau().getDiametreApproximatif());
         } else { //Dans le cas d'une planète "personnalisée" :
         	
@@ -80,12 +80,13 @@ public class PlaneteTests {
     	assertTrue(listeDesSatellitesNonModifiees.size() == 1);
     	Satellite uniqueSatelliteDeLaTerre = listeDesSatellitesNonModifiees.get(0);
     	assertEquals(this.lune, uniqueSatelliteDeLaTerre);
+    	//On en profite pour voir si notre satellite a le bon nom...
     	assertEquals(uniqueSatelliteDeLaTerre.getNom(), "lune");
     	
     	//Pour supprimer un satellite, il faut passer par la méthode supprimerSatellite()
+    	//On vérifie que tout est bien encapsulé comme on l'a souhaité.
     	this.planeteTerre.supprimerSatellite(uniqueSatelliteDeLaTerre);
     	assertTrue(this.planeteTerre.getSatellite().size() == 0);
-    	//Tout est bien encapsulé.
     }
     
 
@@ -95,10 +96,9 @@ public class PlaneteTests {
      * Méthode appelée après chaque appel de méthode de test.
      */
     @After
-    public void tearDown() // throws java.lang.Exception
+    public void tearDown()
     {
         //Libérez ici les ressources engagées par setUp()
-        
     }
 
 }

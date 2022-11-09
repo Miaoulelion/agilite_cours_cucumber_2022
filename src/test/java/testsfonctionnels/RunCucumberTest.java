@@ -1,4 +1,4 @@
-package dojo;  
+package testsfonctionnels;  
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;  
