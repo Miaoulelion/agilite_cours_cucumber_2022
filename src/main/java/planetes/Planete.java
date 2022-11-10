@@ -19,8 +19,8 @@ public class Planete {
     /**
      * Constructeur d'objets de classe Planete
      */
-    public Planete(int diametre, int temp)
-    {
+    
+    public Planete(int diametre, int temp){
     	this.setTemperatureMoyenne(temp);
     	this.setDiametre(diametre);
         this.satellites = new LinkedList<>();
@@ -30,6 +30,7 @@ public class Planete {
      * Par défaut les planètes sont très petites et il y fait
      * plutôt chaud...
      */
+    
     public Planete(){
     	this.setDiametre(100);
     	this.setTemperatureMoyenne(100);
@@ -53,8 +54,7 @@ public class Planete {
      * Donne à l'utilisateur le diamètre de l'instance de planète
      * @return     le diametre de la planète
      */
-    public int getDiametre()
-    {
+    public int getDiametre(){
         return this.diametre;
     }
     
